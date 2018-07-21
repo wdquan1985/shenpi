@@ -68,10 +68,6 @@
 			<version>${activiti.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
- 		</dependency>
-		<dependency>
 			<groupId>org.activiti</groupId>
 			<artifactId>activiti-spring-boot-starter-rest-api</artifactId>
 			<!--<artifactId>spring-boot-starter-rest-api</artifactId>-->
@@ -80,11 +76,6 @@
 		<dependency>
 			<groupId>org.activiti</groupId>
 			<artifactId>activiti-spring-boot-starter-actuator</artifactId>
-			<version>${activiti.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.activiti</groupId>
-			<artifactId>activiti-spring-boot-starter-jpa</artifactId>
 			<version>${activiti.version}</version>
 		</dependency>
 		<dependency>
@@ -102,86 +93,6 @@
 		    <artifactId>activiti-rest</artifactId>
 		    <version>6.0.0</version>
 		</dependency>
-		<!--
-		<dependency>
-		    <groupId>org.activiti</groupId>
-		    <artifactId>spring-boot-starter-basic</artifactId>
-		    <version>${activiti.version}</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.activiti</groupId>
-		    <artifactId>spring-boot-starter-rest-api</artifactId>
-		    <version>${activiti.version}}</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.activiti</groupId>
-		    <artifactId>spring-boot-starter-actuator</artifactId>
-		    <version>${activiti.version}</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.activiti</groupId>
-		    <artifactId>spring-boot-starter-jpa</artifactId>
-		    <version>${activiti.version}</version>
-		</dependency>
-		-->
-		<!--  
-		<dependency>
-		    <groupId>org.activiti</groupId>
-		    <artifactId>activiti-bpmn-converter</artifactId>
-		    <version>6.0.0</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.activiti</groupId>
-		    <artifactId>activiti-bpmn-layout</artifactId>
-		    <version>6.0.0</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.activiti</groupId>
-		    <artifactId>activiti-bpmn-model</artifactId>
-		    <version>6.0.0</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.activiti</groupId>
-		    <artifactId>activiti-dmn-api</artifactId>
-		    <version>6.0.0</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.activiti</groupId>
-		    <artifactId>activiti-dmn-model</artifactId>
-		    <version>6.0.0</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.activiti</groupId>
-		    <artifactId>activiti-engine</artifactId>
-		    <version>6.0.0</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.activiti</groupId>
-		    <artifactId>activiti-form-api</artifactId>
-		    <version>6.0.0</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.activiti</groupId>
-		    <artifactId>activiti-form-model</artifactId>
-		    <version>6.0.0</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.activiti</groupId>
-		    <artifactId>activiti-image-generator</artifactId>
-		    <version>6.0.0</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.activiti</groupId>
-		    <artifactId>activiti-process-validation</artifactId>
-		    <version>6.0.0</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.activiti</groupId>
-		    <artifactId>activiti-spring</artifactId>
-		    <version>6.0.0</version>
-		</dependency>
-
-		-->
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger2</artifactId>
@@ -255,13 +166,6 @@
 		    <artifactId>bcprov-jdk15on</artifactId>
 		    <version>1.47</version>
 		</dependency>
-<!--  
-		<dependency>
-		    <groupId>org.apache.shiro</groupId>
-		    <artifactId>shiro-spring-boot-starter</artifactId>
-		    <version>1.4.0</version>
-		</dependency>
--->
 		<dependency>
 			<groupId>org.apache.shiro</groupId>
 			<artifactId>shiro-spring</artifactId>

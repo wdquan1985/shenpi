@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ZhaobiaoMapper">
+	
+	<!--琛ㄥ悕 -->
+	<sql id="tableName">
+		OA_ZHAOBIAO
+	</sql>
+	
+	<!--鏁版嵁瀛楀吀琛ㄥ悕 -->
+	<sql id="dicTableName">
+		SYS_DICTIONARIES
+	</sql>
+	
+	<!-- 瀛楁 -->
+	<sql id="Field">
+		f.NAME,	
+		f.ADDRESS,	
+		f.PHONENUMBER,	
+		f.PRODUCTNAME,
+		f.PRODUCTTYPE,	
+		f.ZHAOBIAO_ID
+	</sql>
+	
+	<!-- 瀛楁鐢ㄤ簬鏂板 -->
+	<sql id="Field2">
+		NAME,	
+		ADDRESS,	
+		PHONENUMBER,	
+		PRODUCTNAME,
+		PRODUCTTYPE,	
+		ZHAOBIAO_ID
+	</sql>
+	
+	<!-- 瀛楁鍊� -->
+	<sql id="FieldValue">
+		#{NAME},	
+		#{ADDRESS},	
+		#{PHONENUMBER},	
+		#{PRODUCTNAME},
+		#{PRODUCTTYPE},
+		#{ZHAOBIAO_ID}
+	</sql>
+	
+	<!-- 鏂板-->
+	<insert id="save" parameterType="pd">
+		insert into 
+	<include refid="tableName"></include>
+		(
+	<include refid="Field2"></include>
+		) values (
+	<include refid="FieldValue"></include>
+		)
+	</insert>
+	
+	<!-- 鍒犻櫎-->
+	<delete id="delete" parameterType="pd">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			ZHAOBIAO_ID = #{ZHAOBIAO_ID}
+	</delete>
+	
+	<!-- 淇敼 -->
+	<update id="edit" parameterType="pd">
+		update
+		<include refid="tableName"></include>
+		set 
+			ZHAOBIAO_ID = ZHAOBIAO_ID
+		where 
+			ZHAOBIAO_ID = #{ZHAOBIAO_ID}
+	</update>
+	
+	<!-- 閫氳繃ID鑾峰彇鏁版嵁 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include> f
+		where 
+			f.ZHAOBIAO_ID = #{ZHAOBIAO_ID}
+	</select>
+	
+	<!-- 鍒楄〃 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include> f
+		where 1=1
+		<if test="pd.keywords!= null and pd.keywords != ''"><!-- 鍏抽敭璇嶆绱� -->
+			and
+				(
+				<!--	鏍规嵁闇�姹傝嚜宸卞姞妫�绱㈡潯浠�
+					瀛楁1 LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+					 or 
+					瀛楁2 LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%') 
+				-->
+				)
+		</if>
+	</select>
+	
+	<!-- 鍒楄〃(鍏ㄩ儴) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+		<include refid="Field"></include>
+		from 
+		<include refid="tableName"></include> f
+	</select>
+	
+	<!-- 鎵归噺鍒犻櫎 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from
+		<include refid="tableName"></include>
+		where 
+			ZHAOBIAO_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+	
+	<!-- fh313596790qq(闈掕嫈) -->
+</mapper>

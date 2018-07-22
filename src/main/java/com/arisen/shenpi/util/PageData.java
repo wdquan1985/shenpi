@@ -10,7 +10,6 @@ import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.alibaba.druid.proxy.jdbc.ClobProxyImpl;
 /** 
  * 说明：参数封装Map
  * 创建人：FH Q313596790
@@ -73,24 +72,7 @@ public class PageData extends HashMap implements Map{
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public Object put(Object key, Object value) {
-		if(value instanceof ClobProxyImpl){ 			//读取oracle Clob类型数据
-			try {
-				ClobProxyImpl cpi = (ClobProxyImpl)value;
-				Reader is = cpi.getCharacterStream(); 	//获取流
-				BufferedReader br = new BufferedReader(is);
-				String str = br.readLine();
-				StringBuffer sb = new StringBuffer();
-				while(str != null){						//循环读取数据拼接到字符串
-					sb.append(str);
-					sb.append("\n");
-					str = br.readLine();
-				}
-				value = sb.toString();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+	public Object put(Object key, Object value) {	
 		return map.put(key, value);
 	}
 	

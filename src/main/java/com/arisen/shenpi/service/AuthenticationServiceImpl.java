@@ -132,7 +132,6 @@ public class AuthenticationServiceImpl implements AuthenticationService{
 					.realm(realm) //
 					.grantType(OAuth2Constants.PASSWORD) //
 					.clientId(resource) //
-					.clientSecret(secret) //
 					.username("bwang018") //
 					.password("1234567") //
 					.build();

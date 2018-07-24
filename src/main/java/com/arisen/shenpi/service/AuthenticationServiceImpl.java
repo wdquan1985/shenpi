@@ -49,34 +49,37 @@ public class AuthenticationServiceImpl implements AuthenticationService{
 
 	  @Value("${keycloak.credentials.secret}")
 	  private String secret;
+	  
+	  @Value("${shenpi.keycloak.admin.realm}")
+	  private String masterream;
 
+	  @Value("${shenpi.keycloak.admin.user}")
+	  private String adminUser;
+	  
+
+	  @Value("${shenpi.keycloak.admin.password}")
+	  private String adminPassword;
+
+	  @Value("${shenpi.keycloak.admin.clientId}")
+	  private String adminClientId;
 		@Override
 		public String addUser(KeycloakUser keycloakuser) {
-			// TODO Auto-generated method stub
-			// User "idm-admin" needs at least "manage-users, view-clients, view-realm, view-users" roles for "realm-management"
-//			Keycloak kc = Keycloak.getInstance(
-//			  serverUrl,
-//			  "master", // the realm to log in to
-//			  "admin", "123456", // the user
-//			  secret);
 			Keycloak kc = KeycloakBuilder.builder()
 				.serverUrl(serverUrl)
-				.realm("master")
-				.username("admin")
-				.password("123456")
-				.clientId("admin-cli")
+				.realm(masterream)
+				.username(adminUser)
+				.password(adminPassword)
+				.clientId(adminClientId)
 				.resteasyClient(
 					new ResteasyClientBuilder()
 					.connectionPoolSize(10).build())
 				.build();
 			CredentialRepresentation credential = new CredentialRepresentation();
 			credential.setType(CredentialRepresentation.PASSWORD);
-			credential.setValue("123456");
+			credential.setValue(keycloakuser.getPassword());
 			
 			UserRepresentation user = new UserRepresentation();
-			user.setUsername("testuser");
-			user.setFirstName("yangming");
-			user.setLastName("wang");
+			user.setUsername(keycloakuser.getUsername());
 			user.setCredentials(Arrays.asList(credential));
 			Response createUserResponse = kc.realm(realm).users().create(user);
 	        createUserResponse.close();
@@ -153,32 +156,5 @@ public class AuthenticationServiceImpl implements AuthenticationService{
 			return null;
 		}
 		
-//		@Override
-//		public String updateUser(HttpServletRequest req, HttpServletResponse response) {
-//			// TODO Auto-generated method stub
-//			// 重要：User "bwang018" needs at least "manage-users, view-clients, view-realm, view-users" roles for "realm-management" 
-//	        String userId = "e265429a-1b60-490d-bc0f-c45d6504b8f6";
-//			KeycloakSecurityContext securityContext = (KeycloakSecurityContext) req.getSession().getAttribute(KeycloakSecurityContext.class.getName());
-//			String token = securityContext.getTokenString();
-//			//get token http://localhost:8086/auth/realms/shenpi/protocol/openid-connect/token
-//			
-//	    	List<NameValuePair> paramsList = new ArrayList<NameValuePair>();
-//	    	paramsList.add(new BasicNameValuePair("email", "bwang018@sina.com"));
-//
-//	    	String url = "http://localhost:8086/auth/admin/realms/shenpi/users/e265429a-1b60-490d-bc0f-c45d6504b8f6";
-//
-//	    	String[] jenkinsjobBuildInfo = new String[2];
-//			try {
-//				jenkinsjobBuildInfo = HttpClientTool.putRequest(url, "","",token, "","application/json","",paramsList);
-//			} catch (Exception e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//
-//			Map<String, Object> resultMap = new HashMap<String, Object>();
-//			resultMap.put("token", securityContext.getTokenString());
-//			return null;
-//		}
-	  
 
 }

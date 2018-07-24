@@ -1,10 +1,5 @@
 package com.arisen.shenpi.controller;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiOperation;
-
-import java.io.UnsupportedEncodingException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -12,7 +7,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.keycloak.AuthorizationContext;
 import org.keycloak.KeycloakSecurityContext;
@@ -20,24 +14,20 @@ import org.keycloak.representations.AccessToken;
 import org.keycloak.representations.IDToken;
 import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.authentication.AbstractAuthenticationToken;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.arisen.shenpi.service.AuthenticationService;
-import com.arisen.shenpi.util.SpringSecuritySession;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 
 /**
@@ -57,7 +47,6 @@ public class AuthenticationController {
 		KeycloakSecurityContext securityContext = (KeycloakSecurityContext) req.getSession().getAttribute(KeycloakSecurityContext.class.getName());
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("token", securityContext.getTokenString());
-		
 		IDToken idToken = securityContext.getIdToken();
 		
 		resultMap.put("email", idToken.getEmail());
